@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abandoned, Not Forgotten | NASA Space Apps</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <span class="badge">NASA INTERNATIONAL SPACE APPS CHALLENGE</span>
+      <h1>Abandoned, Not Forgotten</h1>
+      <p>Off-World Archaeology, Orbital Proof &amp; First-Person Hardware Chronicles</p>
+    </div>
+    <div class="world-switcher">
+      <button id="btn-moon" class="world-btn active" onclick="switchWorld('moon')">🌕 The Moon (4)</button>
+      <button id="btn-mars" class="world-btn" onclick="switchWorld('mars')">🔴 Mars (4)</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Left Column: Real NASA Planetary Map + Timeline Selector -->
+    <section class="map-panel">
+      <div class="map-header">
+        <div>
+          <h2 id="world-title">Lunar Surface Map</h2>
+          <span class="sub-hint">Real NASA Planetary Projection • Click any beacon</span>
+        </div>
+        <span id="artifact-count" class="count-pill">4 Sites</span>
+      </div>
+
+      <div id="surface-map" class="surface-map moon-bg">
+        <!-- Pins injected dynamically by app.js -->
+      </div>
+
+      <!-- Quick Chronological Selector Strip -->
+      <div class="timeline-strip">
+        <span class="strip-label">CHRONOLOGICAL JUMP:</span>
+        <div id="quick-list" class="quick-list"></div>
+      </div>
+
+      <div class="map-footer">
+        <span>Sources: NASA SVS Planetary Maps, LRO/MRO &amp; NASA Image API</span>
+      </div>
+    </section>
+
+    <!-- Right Column: Machine Photo, Storytelling, Science & Live NASA API -->
+    <section class="story-panel">
+      <div class="story-header">
+        <div>
+          <span id="artifact-tag" class="status-tag">PROTECTED HERITAGE SITE</span>
+          <h2 id="artifact-name">Select an Artifact</h2>
+          <p id="artifact-meta" class="meta-line"></p>
+        </div>
+        <button id="narrate-btn" class="narrate-btn" onclick="toggleNarration()">
+          🔊 Listen to Story
+        </button>
+      </div>
+
+      <!-- NEW: Featured Space Machine Photo Banner -->
+      <div class="machine-hero" onclick="openLightbox(currentHeroPhoto)">
+        <img id="hero-machine-img" src="" alt="NASA Spacecraft" />
+        <div class="hero-overlay">
+          <div>
+            <span id="hero-nasa-id" class="hero-id">NASA ARCHIVE PHOTO</span>
+            <p id="hero-caption">Loading official NASA hardware photo...</p>
+          </div>
+          <span class="zoom-hint">🔍 Click to Inspect</span>
+        </div>
+      </div>
+
+      <!-- Telemetry Cards -->
+      <div class="telemetry-grid">
+        <div class="tele-card">
+          <span class="tele-label">EXACT COORDINATES</span>
+          <strong id="tele-coords">--</strong>
+        </div>
+        <div class="tele-card">
+          <span class="tele-label">TOUCHDOWN DATE</span>
+          <strong id="tele-landed">--</strong>
+        </div>
+        <div class="tele-card">
+          <span class="tele-label">FINAL TRANSMISSION</span>
+          <strong id="tele-ended">--</strong>
+        </div>
+        <div class="tele-card">
+          <span class="tele-label">KEY MILESTONE</span>
+          <strong id="tele-legacy">--</strong>
+        </div>
+      </div>
+
+      <!-- 4 Narrative & Data Tabs -->
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('story', this)">First-Person Log</button>
+        <button class="tab" onclick="showTab('science', this)">Science &amp; Legacy</button>
+        <button class="tab" onclick="showTab('heritage', this)">Orbital Proof &amp; Heritage</button>
+        <button class="tab" onclick="showTab('nasa-api', this)">More NASA Photos</button>
+      </div>
+
+      <div id="tab-story" class="tab-content active">
+        <blockquote id="first-person-quote"></blockquote>
+        <p id="story-body"></p>
+      </div>
+
+      <div id="tab-science" class="tab-content">
+        <h3>Why It Was Left Behind ("Abandoned")</h3>
+        <p id="why-left"></p>
+        <h3>How It Still Helps Humanity ("Not Forgotten")</h3>
+        <p id="why-matters"></p>
+      </div>
+
+      <div id="tab-heritage" class="tab-content">
+        <h3>Orbital Reconnaissance Verification</h3>
+        <p id="orbital-proof"></p>
+        <h3>Space Heritage &amp; Future Protection</h3>
+        <p id="heritage-law"></p>
+      </div>
+
+      <div id="tab-nasa-api" class="tab-content">
+        <p class="api-note">Click any archival NASA photo below to inspect full details:</p>
+        <div id="nasa-gallery" class="nasa-gallery">
+          <p>Loading authentic NASA imagery...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Full-Screen Photo Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-card">
+      <button class="close-btn" onclick="closeLightbox(event, true)">✕</button>
+      <img id="lightbox-img" src="" alt="Full NASA Photo" />
+      <div class="lightbox-details">
+        <span id="lightbox-id" class="badge"></span>
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
